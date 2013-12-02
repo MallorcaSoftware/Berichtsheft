@@ -13,6 +13,15 @@ class BerichtsheftController extends Controller
    */
   public function dashboardAction()
   {
+//    $issueService = $this->get('jira_api.issue');
+//    ladybug_dump($issueService->get('TICK-52'));
+//    $searchService = $this->get('jira_api.search');
+//    $searchService->search(
+//      array(
+//        'jql' => '(assignee = currentUser() OR assignee was currentUser() OR reporter = currentUser()) AND createdDate > "2013-10-04"',
+//      )
+//    );
+//    ladybug_dump($searchService);
     return array();
   }
 

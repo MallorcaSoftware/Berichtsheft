@@ -27,7 +27,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "pallidotcom/base-bundle": "dev-master",
         "knplabs/knp-snappy-bundle": "dev-master",
-        "friendsofsymfony/user-bundle": "~2.0@dev"
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "medicorenl/jira-api-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

@@ -75,3 +75,7 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Berichtsheft\UserBundle\Entity\User
+
+jira_api:
+    url:         %jira_url%
+    credentials: %jira_credentials%

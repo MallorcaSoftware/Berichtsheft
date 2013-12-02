@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Berichtsheft\UserBundle\BerichtsheftUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new PalliDotCom\BaseBundle\PalliDotComBaseBundle(),
+            new JiraApiBundle\JiraApiBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

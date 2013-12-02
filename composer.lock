@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "7c53932ca9e0faec654e0a0e3248b5b5",
+    "hash": "1e1ac9674e210d9273c29e26c452bcf4",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -685,6 +685,98 @@
             "time": "2013-11-25 12:39:19"
         },
         {
+            "name": "guzzle/guzzle",
+            "version": "v3.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/guzzle.git",
+                "reference": "e97207d07d0385eac269a976628b7a5f9eeb4e07"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/e97207d07d0385eac269a976628b7a5f9eeb4e07",
+                "reference": "e97207d07d0385eac269a976628b7a5f9eeb4e07",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.2",
+                "symfony/event-dispatcher": ">=2.1"
+            },
+            "replace": {
+                "guzzle/batch": "self.version",
+                "guzzle/cache": "self.version",
+                "guzzle/common": "self.version",
+                "guzzle/http": "self.version",
+                "guzzle/inflection": "self.version",
+                "guzzle/iterator": "self.version",
+                "guzzle/log": "self.version",
+                "guzzle/parser": "self.version",
+                "guzzle/plugin": "self.version",
+                "guzzle/plugin-async": "self.version",
+                "guzzle/plugin-backoff": "self.version",
+                "guzzle/plugin-cache": "self.version",
+                "guzzle/plugin-cookie": "self.version",
+                "guzzle/plugin-curlauth": "self.version",
+                "guzzle/plugin-error-response": "self.version",
+                "guzzle/plugin-history": "self.version",
+                "guzzle/plugin-log": "self.version",
+                "guzzle/plugin-md5": "self.version",
+                "guzzle/plugin-mock": "self.version",
+                "guzzle/plugin-oauth": "self.version",
+                "guzzle/service": "self.version",
+                "guzzle/stream": "self.version"
+            },
+            "require-dev": {
+                "doctrine/cache": "*",
+                "monolog/monolog": "1.*",
+                "phpunit/phpunit": "3.7.*",
+                "psr/log": "1.0.*",
+                "symfony/class-loader": "*",
+                "zendframework/zend-cache": "2.0.*",
+                "zendframework/zend-log": "2.0.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Guzzle\\Tests": "tests/",
+                    "Guzzle": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Guzzle Community",
+                    "homepage": "https://github.com/guzzle/guzzle/contributors"
+                }
+            ],
+            "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "rest",
+                "web service"
+            ],
+            "time": "2013-05-13 20:17:47"
+        },
+        {
             "name": "incenteev/composer-parameter-handler",
             "version": "v2.0.0",
             "target-dir": "Incenteev/ParameterHandler",
@@ -959,6 +1051,56 @@
                 "minification"
             ],
             "time": "2013-07-19 00:03:27"
+        },
+        {
+            "name": "medicorenl/jira-api-bundle",
+            "version": "dev-master",
+            "target-dir": "JiraApiBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MedicoreNL/JiraApiBundle.git",
+                "reference": "855e8f1b5bd08b1d4e327a958d2108fe2738a1b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MedicoreNL/JiraApiBundle/zipball/855e8f1b5bd08b1d4e327a958d2108fe2738a1b2",
+                "reference": "855e8f1b5bd08b1d4e327a958d2108fe2738a1b2",
+                "shasum": ""
+            },
+            "require": {
+                "guzzle/guzzle": "3.5.*",
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": ">=2.1.0-dev,<3.0-dev"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "JiraApiBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Kees Schepers",
+                    "email": "kees@keesschepers.nl",
+                    "homepage": "http://keesschepers.nl/"
+                },
+                {
+                    "name": "Liju Pallikadavath Mohanan",
+                    "email": "liju.p.mohanan@medicore.nl"
+                },
+                {
+                    "name": "Peter Paul Keulers",
+                    "email": "pkeulers@gmail.com"
+                }
+            ],
+            "description": "Jira REST API integration in Symfony2.",
+            "keywords": [
+                "jira",
+                "rest",
+                "symfony"
+            ],
+            "time": "2013-11-12 21:49:23"
         },
         {
             "name": "monolog/monolog",
@@ -1829,7 +1971,8 @@
     "stability-flags": {
         "pallidotcom/base-bundle": 20,
         "knplabs/knp-snappy-bundle": 20,
-        "friendsofsymfony/user-bundle": 20
+        "friendsofsymfony/user-bundle": 20,
+        "medicorenl/jira-api-bundle": 20
     },
     "platform": {
         "php": ">=5.3.3"

@@ -13,4 +13,8 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    jira_url:          ~
+    jira_credentials:  ~
+
     wkhtmltopdf_binary: /usr/local/wkhtmltopdf/wkhtmltopdf
