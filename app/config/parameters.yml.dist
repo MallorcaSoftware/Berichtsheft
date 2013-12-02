@@ -13,3 +13,4 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+    wkhtmltopdf_binary: /usr/local/wkhtmltopdf/wkhtmltopdf
