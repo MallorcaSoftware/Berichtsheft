@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:       ~
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -70,3 +70,8 @@ knp_snappy:
         enabled:    true
         binary:     %wkhtmltopdf_binary%
         options:    []
+# FOSUserBundle
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Berichtsheft\UserBundle\Entity\User

@@ -7,5 +7,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class BerichtsheftController extends Controller
 {
-
+  /**
+   * @Template
+   * @return array
+   */
+  public function dashboardAction()
+  {
+    return array();
+  }
 } 
