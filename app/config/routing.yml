@@ -1,0 +1,4 @@
+berichtsheft_base:
+    resource: "@BerichtsheftBaseBundle/Resources/config/routing.yml"
+    prefix:   /
+
