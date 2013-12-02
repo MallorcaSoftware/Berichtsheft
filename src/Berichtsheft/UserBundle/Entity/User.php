@@ -241,4 +241,11 @@ class User extends BaseUser implements AzubiInterface
     $this->surname = $surname;
   }
 
+  /**
+   * @return string
+   */
+  public function getWorklogRetrieverUsername()
+  {
+    return $this->getUsername();
+  }
 }

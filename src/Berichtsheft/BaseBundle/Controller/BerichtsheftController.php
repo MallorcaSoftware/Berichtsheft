@@ -4,6 +4,7 @@ namespace Berichtsheft\BaseBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Berichtsheft\BaseBundle\Worklog\WorklogRetriever;
 
 class BerichtsheftController extends Controller
 {
@@ -13,15 +14,12 @@ class BerichtsheftController extends Controller
    */
   public function dashboardAction()
   {
-//    $issueService = $this->get('jira_api.issue');
-//    ladybug_dump($issueService->get('TICK-52'));
-//    $searchService = $this->get('jira_api.search');
-//    $searchService->search(
-//      array(
-//        'jql' => '(assignee = currentUser() OR assignee was currentUser() OR reporter = currentUser()) AND createdDate > "2013-10-04"',
-//      )
-//    );
-//    ladybug_dump($searchService);
+    $user = $this->get('security.context')->getToken()->getUser();
+    if($user)
+    {
+      $worklogs = $this->getWorklogRetriever()->retrieve($user, new \DateTime('2013-10-01'), new \DateTime('2013-10-20'));
+      ladybug_dump($worklogs);
+    }
     return array();
   }
 
@@ -35,5 +33,13 @@ class BerichtsheftController extends Controller
     return array(
       'user' => $user
     );
+  }
+
+  /**
+   * @return WorklogRetriever
+   */
+  private function getWorklogRetriever()
+  {
+    return $this->get('berichtsheft_base.worklog_retriever.jira');
   }
 } 

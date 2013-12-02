@@ -12,6 +12,11 @@ interface AzubiInterface
   /**
    * @return string
    */
+  function getWorklogRetrieverUsername();
+
+  /**
+   * @return string
+   */
   function getSurname();
 
   /**
