@@ -63,3 +63,10 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+# Snappy
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     /usr/local/wkhtmltopdf/wkhtmltopdf
+        options:    []
