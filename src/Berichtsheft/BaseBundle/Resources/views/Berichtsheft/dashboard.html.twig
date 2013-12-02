@@ -1,3 +1,7 @@
 {% extends 'BerichtsheftBaseBundle::base.html.twig' %}
 
 {% block title %}Dashboard {{ parent() }}{% endblock %}
+
+{% block jumbotron %}
+    {{ render(controller('BerichtsheftBaseBundle:Berichtsheft:greeting')) }}
+{% endblock %}

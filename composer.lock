@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "99b51a27ac7212cd6ee9ca53ffff204a",
+    "hash": "7c53932ca9e0faec654e0a0e3248b5b5",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1028,6 +1028,45 @@
             "time": "2013-11-14 19:48:31"
         },
         {
+            "name": "pallidotcom/base-bundle",
+            "version": "dev-master",
+            "target-dir": "PalliDotCom/BaseBundle",
+            "source": {
+                "type": "git",
+                "url": "http://github.com/PalliDotCom/BaseBundle",
+                "reference": "b3cd00166f9ce876c83809bb457e8a397f42dba7"
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "raulfraile/ladybug-bundle": "v0.7"
+            },
+            "require-dev": {
+                "symfony/framework-bundle": ">=2.2,<2.3-dev"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "PalliDotCom\\BaseBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PalliDotCom",
+                    "email": "pallidotcom@gmail.com"
+                }
+            ],
+            "description": "Provides some basic stuff for symfony2",
+            "homepage": "http://github.com/PalliDotCom/BaseBundle",
+            "keywords": [
+                "base",
+                "bundle"
+            ],
+            "time": "2013-11-23 13:36:36"
+        },
+        {
             "name": "psr/log",
             "version": "1.0.0",
             "source": {
@@ -1064,6 +1103,103 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "raulfraile/ladybug",
+            "version": "v0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/raulfraile/ladybug.git",
+                "reference": "ec7dbf6bcc6371b8f507e702623776967b3f1a16"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/raulfraile/ladybug/zipball/ec7dbf6bcc6371b8f507e702623776967b3f1a16",
+                "reference": "ec7dbf6bcc6371b8f507e702623776967b3f1a16",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "symfony/serializer": ">=2.0.4",
+                "symfony/yaml": ">=2.0.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Ladybug": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Raul Fraile",
+                    "email": "raulfraile@gmail.com",
+                    "homepage": "http://www.raulfb.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple and Extensible PHP Dumper",
+            "homepage": "https://github.com/raulfraile/ladybug",
+            "keywords": [
+                "dump",
+                "ladybug",
+                "tree"
+            ],
+            "time": "2013-08-07 21:05:16"
+        },
+        {
+            "name": "raulfraile/ladybug-bundle",
+            "version": "v0.7",
+            "target-dir": "RaulFraile/Bundle/LadybugBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/raulfraile/LadybugBundle.git",
+                "reference": "04606af1d7b14a507e4007df62ce6d973869cb7d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/raulfraile/LadybugBundle/zipball/04606af1d7b14a507e4007df62ce6d973869cb7d",
+                "reference": "04606af1d7b14a507e4007df62ce6d973869cb7d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "raulfraile/ladybug": "v0.7",
+                "symfony/framework-bundle": ">=2.0.0"
+            },
+            "replace": {
+                "raulfraile/ladybugbundle": "dev-master"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "RaulFraile\\Bundle\\LadybugBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Raul Fraile",
+                    "email": "raulfraile@gmail.com",
+                    "homepage": "http://www.raulfrailebeneyto.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Symfony2 bundle for Ladybug library (Simple and Extensible PHP Dumper)",
+            "homepage": "https://github.com/raulfraile/LadybugBundle",
+            "keywords": [
+                "dump",
+                "ladybug",
+                "tree",
+                "twig"
+            ],
+            "time": "2013-08-07 21:33:23"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -1691,6 +1827,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "pallidotcom/base-bundle": 20,
         "knplabs/knp-snappy-bundle": 20,
         "friendsofsymfony/user-bundle": 20
     },

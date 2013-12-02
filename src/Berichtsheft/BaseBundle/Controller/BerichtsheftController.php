@@ -15,4 +15,16 @@ class BerichtsheftController extends Controller
   {
     return array();
   }
+
+  /**
+   * @Template
+   * @return array
+   */
+  public function greetingAction()
+  {
+    $user = $this->get('security.context')->getToken()->getUser();
+    return array(
+      'user' => $user
+    );
+  }
 } 

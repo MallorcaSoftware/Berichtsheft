@@ -6,6 +6,12 @@
     "autoload": {
         "psr-0": { "": "src/" }
     },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "http://github.com/PalliDotCom/BaseBundle"
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.3.*",
@@ -19,6 +25,7 @@
         "sensio/framework-extra-bundle": "2.3.*",
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
+        "pallidotcom/base-bundle": "dev-master",
         "knplabs/knp-snappy-bundle": "dev-master",
         "friendsofsymfony/user-bundle": "~2.0@dev"
     },
