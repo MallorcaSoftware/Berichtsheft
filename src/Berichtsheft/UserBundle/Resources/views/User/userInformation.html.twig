@@ -1,0 +1,21 @@
+<h1>Deine Daten</h1>
+<dl>
+    <dt>Vorname</dt>
+    <dd>{{ user.firstname }}</dd>
+    <dt>Nachname</dt>
+    <dd>{{ user.surname }}</dd>
+    <dt>Geburtstag</dt>
+    <dd>{{ user.birthday | date('d.m.Y') }}</dd>
+    <dt>Geburtsort</dt>
+    <dd>{{ user.birthplace }}</dd>
+    <dt>Wohnort</dt>
+    <dd>{{ user.residence }}</dd>
+    <dt>Straße</dt>
+    <dd>{{ user.street }}</dd>
+    <dt>Ausbildungsstätte</dt>
+    <dd>{{ user.ausbildungresidence }}</dd>
+    <dt>Ausbildungsberuf</dt>
+    <dd>{{ user.ausbildungsberuf }}</dd>
+    <dt>Ausbildungszeitraum</dt>
+    <dd>{{ user.ausbildungfrom | date('d.m.Y') }} - {{ user.ausbildungto | date('d.m.Y') }}</dd>
+</dl>

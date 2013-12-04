@@ -1,0 +1,37 @@
+{% extends 'BerichtsheftBaseBundle::base.html.twig' %}
+
+{% block body %}
+<table>
+    <tr>
+        <td>Name</td>
+        <td>{{ berichtsheft.azubi.surname }}</td>
+        <td>Vorname</td>
+        <td>Pascal</td>
+    </tr>
+    <tr>
+        <td>Geboren am</td>
+        <td>11.03.1991</td>
+        <td>Geburtsort</td>
+        <td>Winsen (Luhe)</td>
+    </tr>
+    <tr>
+        <td>Wohnort</td>
+        <td>Hamburg</td>
+        <td>Straße</td>
+        <td>Rittmerskamp</td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>Ausbildungsberuf</td>
+        <td>Fachinformatiker (Anwendungsentwicklung)</td>
+        <td>Ausbildungszeitraum</td>
+        <td>vom 01.02.2011 bis 31.01.2014</td>
+        <td>Ausbildungsstätte</td>
+        <td>EOS UPTRADE GmbH</td>
+    </tr>
+</table>
+
+<h1>Ausbildungsnachweis Nr. 1 vom 07.03.2011 bis 11.03.2011</h1>
+{% endblock %}

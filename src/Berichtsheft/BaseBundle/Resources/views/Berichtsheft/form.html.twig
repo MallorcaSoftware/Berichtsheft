@@ -1,0 +1,36 @@
+<h1>Nachweis erstellen</h1>
+<p>Bitte gebe die Nummer deines Ausbildungsnachweises an und wähle eine Kalenderwoche und ein Jahr aus dem ein Nachweis generiert werden soll.</p>
+{{ form_start(form, {'attr': {'class': 'form-horizontal', 'role': 'form'}}) }}
+{{ form_errors(form) }}
+
+<div class="form-group">
+    <label for="form_number" class="col-sm-2 control-label">Nachweis Nr.</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.number, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.number) }}
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="form_week" class="col-sm-2 control-label">Kalenderwoche</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.week, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.week) }}
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="form_year" class="col-sm-2 control-label">Jahr</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.year, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.year) }}
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        {{ form_widget(form.generate, {'attr': {'class': 'btn btn-primary'}}) }}
+    </div>
+</div>
+
+{{ form_end(form) }}

@@ -5,3 +5,15 @@
 {% block jumbotron %}
     {{ render(controller('BerichtsheftBaseBundle:Berichtsheft:greeting')) }}
 {% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-8">
+            {{ include('BerichtsheftBaseBundle:Berichtsheft:form.html.twig', { 'form': form }) }}
+        </div>
+        <div class="col-lg-4">
+            {{ render(controller('BerichtsheftUserBundle:User:userInformation')) }}
+        </div>
+    </div>
+{% endblock %}

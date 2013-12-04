@@ -1,3 +1,11 @@
 berichtsheft_base_dashboard:
     pattern:  /
     defaults: { _controller: BerichtsheftBaseBundle:Berichtsheft:dashboard }
+
+berichtsheft_base_show:
+    pattern:  /show
+    defaults: { _controller: BerichtsheftBaseBundle:Berichtsheft:show }
+
+berichtsheft_base_generate:
+    pattern:  /generate
+    defaults: { _controller: BerichtsheftBaseBundle:Berichtsheft:generate }
