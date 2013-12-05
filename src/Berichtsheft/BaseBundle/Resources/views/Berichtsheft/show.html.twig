@@ -5,7 +5,15 @@
     <div class="row top-margin-row">
         <div class="col-lg-12">
             <div class="actions">
-                <a href="{{ path('berichtsheft_base_pdf') }}" class="btn btn-success">Als pdf exportieren</a>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-export"></span> exportieren <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ path('berichtsheft_base_pdf') }}"><span class="glyphicon glyphicon-file"></span> PDF</a></li>
+                        <li><a href="{{ path('berichtsheft_base_pdf') }}"><span class="glyphicon glyphicon-picture"></span> Bild</a></li>
+                    </ul>
+                </div>
             </div>
             {{ include('BerichtsheftBaseBundle:Berichtsheft:berichtsheft.html.twig', { 'berichtsheft': berichtsheft }) }}
         </div>
