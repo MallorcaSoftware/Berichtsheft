@@ -13,3 +13,7 @@ berichtsheft_base_pdf:
 berichtsheft_base_generate:
     pattern:  /generate
     defaults: { _controller: BerichtsheftBaseBundle:Berichtsheft:generate }
+
+berichtsheft_base_benutzerhandbuch:
+    pattern:  /benutzerhandbuch
+    defaults: { _controller: BerichtsheftBaseBundle:Content:benutzerhandbuch }
