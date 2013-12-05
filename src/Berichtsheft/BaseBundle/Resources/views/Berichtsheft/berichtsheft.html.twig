@@ -1,0 +1,95 @@
+<table class="table table-bordered">
+    <tbody>
+    <tr>
+        <td>Name</td>
+        <td>{{ berichtsheft.azubi.surname }}</td>
+        <td>Vorname</td>
+        <td>Pascal</td>
+    </tr>
+    <tr>
+        <td>Geboren am</td>
+        <td>11.03.1991</td>
+        <td>Geburtsort</td>
+        <td>Winsen (Luhe)</td>
+    </tr>
+    <tr>
+        <td>Wohnort</td>
+        <td>Hamburg</td>
+        <td>Straße</td>
+        <td>Rittmerskamp</td>
+    </tr>
+    </tbody>
+</table>
+
+<table class="table table-bordered">
+    <tbody>
+    <tr>
+        <td>Ausbildungsberuf</td>
+        <td>Fachinformatiker (Anwendungsentwicklung)</td>
+    </tr>
+    <tr>
+        <td>Ausbildungszeitraum</td>
+        <td>vom 01.02.2011 bis 31.01.2014</td>
+    </tr>
+    <tr>
+        <td>Ausbildungsstätte</td>
+        <td>EOS UPTRADE GmbH</td>
+    </tr>
+    </tbody>
+</table>
+
+<h1>Ausbildungsnachweis Nr. {{ berichtsheft.number }} vom {{ berichtsheft.from | date('d.m.Y') }} bis {{ berichtsheft.to | date('d.m.Y') }}</h1>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Datum</th>
+        <th>Ausgeführte Arbeiten</th>
+        <th>Zeit</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in berichtsheft.items %}
+        <tr>
+            <td>{{ item.date | date('d.m.Y') }}</td>
+            <td>{{ item.content }}</td>
+            <td>2 Stunden</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<h2>Bemerkungen des Ausbilders</h2>
+<table class="table table-bordered">
+    <tbody>
+    <tr>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Unterschriften</h2>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Für die Richtigkeit aller Angaben:</th>
+        <th>Für die Richtigkeit aller Angaben über die betriebliche Ausbildung:</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            Auszubildender
+            Unterschrift und Datum
+        </td>
+        <td>
+            Ausbilder
+            Unterschrift und Datum
+        </td>
+    </tr>
+    </tbody>
+</table>

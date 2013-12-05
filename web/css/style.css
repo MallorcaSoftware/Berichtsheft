@@ -2,7 +2,12 @@ body {
     padding-top: 40px;
     padding-bottom: 40px;
 }
-
+.actions {
+    margin-bottom: 20px;
+}
+.top-margin-row {
+    margin-top: 40px;
+}
 .form-signin {
     max-width: 330px;
     padding: 15px;

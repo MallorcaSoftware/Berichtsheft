@@ -22,6 +22,11 @@ class BerichtsheftItem
   private $content;
 
   /**
+   * @var int
+   */
+  private $timeSpentSeconds = 0;
+
+  /**
    * @param Berichtsheft $berichtsheft
    * @param $content
    * @param \DateTime $date
@@ -80,6 +85,22 @@ class BerichtsheftItem
   public function getDate()
   {
     return $this->date;
+  }
+
+  /**
+   * @param int $timeSpentSeconds
+   */
+  public function setTimeSpentSeconds($timeSpentSeconds)
+  {
+    $this->timeSpentSeconds = $timeSpentSeconds;
+  }
+
+  /**
+   * @return int
+   */
+  public function getTimeSpentSeconds()
+  {
+    return $this->timeSpentSeconds;
   }
 
 } 

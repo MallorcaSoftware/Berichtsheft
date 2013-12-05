@@ -6,6 +6,7 @@ use Berichtsheft\BaseBundle\Model\Berichtsheft;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Berichtsheft\BaseBundle\BerichtsheftBuilder\BerichtsheftBuilderInterface;
 
 class BerichtsheftController extends Controller
@@ -29,15 +30,30 @@ class BerichtsheftController extends Controller
    */
   public function showAction(Request $request)
   {
-    $session = $this->get('session');
-    $berichtsheft = $session->get('berichtsheft');
-
-    if(!$berichtsheft)
-    {
-      throw $this->createNotFoundException('Berichtsheft nicht gefunden');
-    }
+    $berichtsheft = $this->getBerichtsheft();
     return array(
       'berichtsheft' => $berichtsheft
+    );
+  }
+
+  /**
+   * @param Request $request
+   * @return Response
+   */
+  public function pdfAction(Request $request)
+  {
+    $berichtsheft = $this->getBerichtsheft();
+    $html = $this->renderView('BerichtsheftBaseBundle:Berichtsheft:export.html.twig', array(
+      'berichtsheft' => $berichtsheft
+    ));
+
+    return new Response(
+      $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+      200,
+      array(
+        'Content-Type'          => 'application/pdf',
+        'Content-Disposition'   => 'attachment; filename="file.pdf"'
+      )
     );
   }
 
@@ -79,6 +95,22 @@ class BerichtsheftController extends Controller
   private function getBerichtsheftBuilder()
   {
     return $this->get('berichtsheft_base.berichtsheft_builder');
+  }
+
+  /**
+   * @return Berichtsheft
+   * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+   */
+  public function getBerichtsheft()
+  {
+    $session = $this->get('session');
+    $berichtsheft = $session->get('berichtsheft');
+
+    if(!$berichtsheft)
+    {
+      throw $this->createNotFoundException('Berichtsheft nicht gefunden');
+    }
+    return $berichtsheft;
   }
 
   /**

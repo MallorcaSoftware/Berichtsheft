@@ -49,6 +49,7 @@ class BerichtsheftBuilder implements BerichtsheftBuilderInterface
     {
       $content = $worklogItem->getTitle() . ' - ' . $worklogItem->getComment();
       $item = new BerichtsheftItem($berichtsheft, $content, $worklogItem->getDate());
+      $item->setTimeSpentSeconds($worklogItem->getTimeSpentSeconds());
       $items[] = $item;
     }
     $berichtsheft->setItems($items);

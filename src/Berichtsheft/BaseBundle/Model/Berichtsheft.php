@@ -30,15 +30,22 @@ class Berichtsheft
   private $comment;
 
   /**
+   * @var int
+   */
+  private $number;
+
+  /**
    * @param AzubiInterface $azubi
    * @param \DateTime $from
    * @param \DateTime $to
+   * @param int $number
    */
-  function __construct(AzubiInterface $azubi, \DateTime $from, \DateTime $to)
+  function __construct(AzubiInterface $azubi, \DateTime $from, \DateTime $to, $number)
   {
     $this->azubi = $azubi;
     $this->from = $from;
     $this->to = $to;
+    $this->number = $number;
   }
 
 
@@ -120,6 +127,22 @@ class Berichtsheft
   public function getItems()
   {
     return $this->items;
+  }
+
+  /**
+   * @param int $number
+   */
+  public function setNumber($number)
+  {
+    $this->number = $number;
+  }
+
+  /**
+   * @return int
+   */
+  public function getNumber()
+  {
+    return $this->number;
   }
 
 } 

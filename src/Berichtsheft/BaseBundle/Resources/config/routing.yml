@@ -6,6 +6,10 @@ berichtsheft_base_show:
     pattern:  /show
     defaults: { _controller: BerichtsheftBaseBundle:Berichtsheft:show }
 
+berichtsheft_base_pdf:
+    pattern:  /show/pdf
+    defaults: { _controller: BerichtsheftBaseBundle:Berichtsheft:pdf }
+
 berichtsheft_base_generate:
     pattern:  /generate
     defaults: { _controller: BerichtsheftBaseBundle:Berichtsheft:generate }
