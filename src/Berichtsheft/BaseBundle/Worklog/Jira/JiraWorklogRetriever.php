@@ -89,8 +89,9 @@ class JiraWorklogRetriever extends WorklogRetriever
         {
           foreach($ticket['fields']['worklog']['worklogs'] as $worklog_item)
           {
-            $worklog = new WorklogItem($id, $description);
+            $worklog = new WorklogItem($id, $description, new \DateTime($worklog_item['started']));
             $worklog->setComment($worklog_item['comment']);
+            $worklog->setTimeSpentSeconds($worklog_item['timeSpentSeconds']);
             $worklogs[] = $worklog;
           }
         }

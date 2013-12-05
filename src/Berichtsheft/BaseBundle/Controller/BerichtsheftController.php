@@ -5,8 +5,8 @@ namespace Berichtsheft\BaseBundle\Controller;
 use Berichtsheft\BaseBundle\Model\Berichtsheft;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Berichtsheft\BaseBundle\Worklog\WorklogRetriever;
 use Symfony\Component\HttpFoundation\Request;
+use Berichtsheft\BaseBundle\BerichtsheftBuilder\BerichtsheftBuilderInterface;
 
 class BerichtsheftController extends Controller
 {
@@ -16,12 +16,6 @@ class BerichtsheftController extends Controller
    */
   public function dashboardAction()
   {
-    $user = $this->get('security.context')->getToken()->getUser();
-    if($user)
-    {
-      //$worklogs = $this->getWorklogRetriever()->retrieve($user, new \DateTime('2013-10-01'), new \DateTime('2013-10-20'));
-      //ladybug_dump($worklogs);
-    }
     return array(
       'form' => $this->getGenerationForm()->createView()
     );
@@ -37,11 +31,11 @@ class BerichtsheftController extends Controller
   {
     $session = $this->get('session');
     $berichtsheft = $session->get('berichtsheft');
+
     if(!$berichtsheft)
     {
       throw $this->createNotFoundException('Berichtsheft nicht gefunden');
     }
-    ladybug_dump($berichtsheft);
     return array(
       'berichtsheft' => $berichtsheft
     );
@@ -53,16 +47,14 @@ class BerichtsheftController extends Controller
    */
   public function generateAction(Request $request)
   {
+    $session = $this->get('session');
     $user = $this->get('security.context')->getToken()->getUser();
     $form = $this->getGenerationForm();
     $form->handleRequest($request);
     if($form->isValid())
     {
       $data = $form->getData();
-      $from = new \DateTime('11.03.1991');
-      $to = new \DateTime('11.04.1991');
-      $berichtsheft = new Berichtsheft($user, $from, $to);
-      $session = $this->get('session');
+      $berichtsheft = $this->getBerichtsheftBuilder()->generateBerichtsheft($user, $data['week'], $data['year'], $data['number']);
       $session->set('berichtsheft', $berichtsheft);
       return $this->redirect($this->generateUrl('berichtsheft_base_show'));
     }
@@ -82,11 +74,11 @@ class BerichtsheftController extends Controller
   }
 
   /**
-   * @return WorklogRetriever
+   * @return BerichtsheftBuilderInterface
    */
-  private function getWorklogRetriever()
+  private function getBerichtsheftBuilder()
   {
-    return $this->get('berichtsheft_base.worklog_retriever.jira');
+    return $this->get('berichtsheft_base.berichtsheft_builder');
   }
 
   /**

@@ -17,7 +17,7 @@ class WorklogItem
   /**
    * @var int
    */
-  private $hours = 0;
+  private $timeSpentSeconds = 0;
 
   /**
    * @var string
@@ -25,13 +25,19 @@ class WorklogItem
   private $comment = '';
 
   /**
+   * @var \DateTime
+   */
+  private $date;
+
+  /**
    * @param int $id
    * @param string $title
    */
-  function __construct($id, $title)
+  function __construct($id, $title, \DateTime $date)
   {
     $this->id = $id;
     $this->title = $title;
+    $this->date = $date;
   }
 
   /**
@@ -51,19 +57,19 @@ class WorklogItem
   }
 
   /**
-   * @param int $hours
+   * @param int $timeSpentSeconds
    */
-  public function setHours($hours)
+  public function setTimeSpentSeconds($timeSpentSeconds)
   {
-    $this->hours = $hours;
+    $this->timeSpentSeconds = $timeSpentSeconds;
   }
 
   /**
    * @return int
    */
-  public function getHours()
+  public function getTimeSpentSeconds()
   {
-    return $this->hours;
+    return $this->timeSpentSeconds;
   }
 
   /**
@@ -98,5 +104,20 @@ class WorklogItem
     return $this->title;
   }
 
+  /**
+   * @param \DateTime $date
+   */
+  public function setDate($date)
+  {
+    $this->date = $date;
+  }
+
+  /**
+   * @return \DateTime
+   */
+  public function getDate()
+  {
+    return $this->date;
+  }
 
 } 
