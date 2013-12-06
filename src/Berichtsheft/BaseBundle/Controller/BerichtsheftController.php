@@ -146,7 +146,8 @@ class BerichtsheftController extends Controller
       ->setAction($this->generateUrl('berichtsheft_base_generate'))
       ->add('number', 'integer', array(
                       'required' => true,
-                      'label' => 'Ausbildungsnachweis Nr.'
+                      'label' => 'Ausbildungsnachweis Nr.',
+                      'data' => '1'
                     ))
       ->add('week', 'choice', array(
                     'required' => true,
