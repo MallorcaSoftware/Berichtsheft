@@ -90,6 +90,19 @@ class BerichtsheftController extends Controller
   }
 
   /**
+   * @Template
+   * @param Request $request
+   * @return array
+   */
+  public function userInformationAction(Request $request)
+  {
+    $user = $this->get('security.context')->getToken()->getUser();
+    return array(
+      'user' => $user
+    );
+  }
+
+  /**
    * @return BerichtsheftBuilderInterface
    */
   private function getBerichtsheftBuilder()

@@ -1,0 +1,39 @@
+<table class="table table-bordered">
+    <tbody>
+    <tr>
+        <td>Name</td>
+        <td>{{ user.surname }}</td>
+        <td>Vorname</td>
+        <td>{{ user.firstname }}</td>
+    </tr>
+    <tr>
+        <td>Geboren am</td>
+        <td>{{ user.birthday | date('d.m.Y') }}</td>
+        <td>Geburtsort</td>
+        <td>{{ user.birthplace }}</td>
+    </tr>
+    <tr>
+        <td>Wohnort</td>
+        <td>{{ user.residence }}</td>
+        <td>Straße</td>
+        <td>{{ user.street }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<table class="table table-bordered">
+    <tbody>
+    <tr>
+        <td>Ausbildungsberuf</td>
+        <td>{{ user.ausbildungsberuf }}</td>
+    </tr>
+    <tr>
+        <td>Ausbildungszeitraum</td>
+        <td>vom {{ user.ausbildungfrom | date('d.m.Y') }} bis {{ user.ausbildungto | date('d.m.Y') }}</td>
+    </tr>
+    <tr>
+        <td>Ausbildungsstätte</td>
+        <td>{{ user.ausbildungresidence }}</td>
+    </tr>
+    </tbody>
+</table>
