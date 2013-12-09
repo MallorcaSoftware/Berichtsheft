@@ -1,7 +1,13 @@
 body {
     padding-top: 40px;
     padding-bottom: 40px;
+    color: #666;
 }
+
+h1,h2,h3,h4,h5,h6 {
+    color: #428bca;
+}
+
 .actions {
     margin-bottom: 20px;
 }
@@ -45,4 +51,24 @@ body {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+/** media list **/
+.media .img-thumbnail {
+    margin: 0 auto 20px;
+    border: none;
+    -moz-box-shadow: 5px 5px 5px #ededed;
+    -webkit-box-shadow: 5px 5px 5px #ededed;
+    box-shadow: 5px 5px 5px #ededed;
+}
+.media {
+    border-bottom: 1px solid #ededed;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+.media-list .last {
+    border: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
