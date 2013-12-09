@@ -35,7 +35,7 @@ class BerichtsheftBuilder implements BerichtsheftBuilderInterface
    * @param int $week
    * @param int $year
    * @param int $number
-   * @return mixed
+   * @return Berichtsheft
    */
   public function generateBerichtsheft(AzubiInterface $azubi, $week, $year, $number = 1)
   {
