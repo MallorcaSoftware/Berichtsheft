@@ -2,10 +2,19 @@ body {
     padding-top: 40px;
     padding-bottom: 40px;
     color: #666;
+    font-size: 16px;
 }
 
 h1,h2,h3,h4,h5,h6 {
     color: #428bca;
+}
+
+.documentation {
+    font-size: 20px;
+}
+
+.documentation h1 {
+    font-size: 40px;
 }
 
 .actions {
@@ -53,9 +62,25 @@ h1,h2,h3,h4,h5,h6 {
     border-top-right-radius: 0;
 }
 
+td.ausbilder_bemerkung {
+    height: 200px;
+}
+
+td.unterschrift {
+    height: 100px;
+}
+
+.table-font-centered {
+    text-align: center;
+}
+
+.table-font-centered th{
+    text-align: center;
+}
+
 /** media list **/
 .media .img-thumbnail {
-    margin: 0 auto 20px;
+    margin: 20px auto;
     border: none;
     -moz-box-shadow: 5px 5px 5px #ededed;
     -webkit-box-shadow: 5px 5px 5px #ededed;
