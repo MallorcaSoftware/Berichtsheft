@@ -15,7 +15,7 @@
         <tr>
             <td>{{ item.date | date('d.m.Y') }}</td>
             <td>{{ item.content }}</td>
-            <td>2 Stunden</td>
+            <td>{{ item.timespentseconds / 60 }} Minuten</td>
         </tr>
     {% endfor %}
     </tbody>
