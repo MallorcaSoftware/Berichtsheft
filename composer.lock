@@ -622,12 +622,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "7a5e29a56418fc409d1475149710239d17ad4135"
+                "reference": "4251991eb8f6bb584ac4dca080d68ad97651a63d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/7a5e29a56418fc409d1475149710239d17ad4135",
-                "reference": "7a5e29a56418fc409d1475149710239d17ad4135",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/4251991eb8f6bb584ac4dca080d68ad97651a63d",
+                "reference": "4251991eb8f6bb584ac4dca080d68ad97651a63d",
                 "shasum": ""
             },
             "require": {
@@ -682,7 +682,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2013-12-09 02:46:36"
+            "time": "2013-12-10 15:15:17"
         },
         {
             "name": "guzzle/guzzle",
