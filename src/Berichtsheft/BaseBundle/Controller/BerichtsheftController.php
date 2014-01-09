@@ -2,7 +2,9 @@
 
 namespace Berichtsheft\BaseBundle\Controller;
 
+use MBence\OpenTBSBundle\Services\OpenTBS;
 use Berichtsheft\BaseBundle\Model\Berichtsheft;
+use Berichtsheft\BaseBundle\Model\AzubiInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,6 +13,9 @@ use Berichtsheft\BaseBundle\BerichtsheftBuilder\BerichtsheftBuilderInterface;
 
 class BerichtsheftController extends Controller
 {
+
+  const TBS_TEMPLATE_PATH = 'data/berichtsheft_template.odt';
+
   /**
    * @Template
    * @return array
@@ -58,6 +63,50 @@ class BerichtsheftController extends Controller
   }
 
   /**
+   * Todo auslagern der Generierung in einer Klasse
+   * @param Request $request
+   * @return Response
+   */
+  public function tbsAction(Request $request)
+  {
+    $berichtsheft = $this->getBerichtsheft();
+    $azubi = $this->getCurrentAzubi();
+
+    $openTBS = $this->getOpenTBS();
+    $this->getOpenTBSTemplatePath();
+    $openTBS->LoadTemplate($this->getOpenTBSTemplatePath());
+
+    $items = array();
+    foreach($berichtsheft->getItems() as $item)
+    {
+      $items[] = array(
+        'date' => $item->getDate()->format('d.m.Y'),
+        'description' => utf8_decode($item->getContent()),
+        'time_spent' => ($item->getTimeSpentSeconds() / 60) . ' Minuten'
+      );
+    }
+
+    $openTBS->MergeBlock('blk2', $items);
+    $openTBS->MergeField('azubi', array(
+      'name' => $azubi->getSurname(),
+      'firstname' => $azubi->getFirstName(),
+      'birthday' => $azubi->getBirthday()->format('d.m.Y'),
+      'birthplace' => $azubi->getBirthPlace(),
+      'residence' => $azubi->getResidence(),
+      'street' => $azubi->getStreet(),
+      'ausbildungsberuf' => $azubi->getAusbildungsberuf(),
+      'ausbildungszeitraum' => 'vom ' . $azubi->getAusbildungFrom()->format('d.m.Y') . ' bis ' . $azubi->getAusbildungTo()->format('d.m.Y'),
+      'ausbildungresidence' => $azubi->getAusbildungResidence()
+    ));
+    $openTBS->MergeField('berichtsheft', array(
+      'number' => $berichtsheft->getNumber(),
+      'from' => $berichtsheft->getFrom()->format('d.m.Y'),
+      'to' => $berichtsheft->getTo()->format('d.m.Y')
+    ));
+    $openTBS->Show(OPENTBS_DOWNLOAD, $berichtsheft->getFileName() . '.odt');
+  }
+
+  /**
    * @param Request $request
    * @return \Symfony\Component\HttpFoundation\RedirectResponse
    */
@@ -96,10 +145,17 @@ class BerichtsheftController extends Controller
    */
   public function userInformationAction(Request $request)
   {
-    $user = $this->get('security.context')->getToken()->getUser();
     return array(
-      'user' => $user
+      'user' => $this->getCurrentAzubi()
     );
+  }
+
+  /**
+   * @return AzubiInterface
+   */
+  protected function getCurrentAzubi()
+  {
+    return $this->get('security.context')->getToken()->getUser();
   }
 
   /**
@@ -108,6 +164,23 @@ class BerichtsheftController extends Controller
   private function getBerichtsheftBuilder()
   {
     return $this->get('berichtsheft_base.berichtsheft_builder');
+  }
+
+  /**
+   * @return OpenTBS
+   */
+  protected function getOpenTBS()
+  {
+    return $this->get('opentbs');
+  }
+
+  /**
+   * returns path to template file
+   * @return string
+   */
+  protected function getOpenTBSTemplatePath()
+  {
+    return $this->get('kernel')->getRootDir() . '/' . self::TBS_TEMPLATE_PATH;
   }
 
   /**

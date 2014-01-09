@@ -148,6 +148,14 @@ class Berichtsheft
   }
 
   /**
+   * @return string
+   */
+  public function getFileName()
+  {
+    return $this->getNumber() . '_berichtsheft_' . $this->getFrom()->format('d.m.Y') . '-' . $this->getTo()->format('d.m.Y');
+  }
+
+  /**
    * Sorting BerichtsheftItems
    * @param BerichtsheftItem $a
    * @param BerichtsheftItem $b

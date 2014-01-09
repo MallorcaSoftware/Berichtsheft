@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new PalliDotCom\BaseBundle\PalliDotComBaseBundle(),
             new JiraApiBundle\JiraApiBundle(),
+            new MBence\OpenTBSBundle\OpenTBSBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
