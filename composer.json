@@ -29,7 +29,8 @@
         "knplabs/knp-snappy-bundle": "dev-master",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "medicorenl/jira-api-bundle": "dev-master",
-        "mbence/opentbs-bundle": "dev-master"
+        "mbence/opentbs-bundle": "dev-master",
+        "fr3d/ldap-bundle": "2.0.*@dev"
     },
     "scripts": {
         "post-install-cmd": [

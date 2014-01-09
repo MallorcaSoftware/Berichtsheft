@@ -5,6 +5,7 @@ namespace Berichtsheft\UserBundle\Entity;
 use Berichtsheft\BaseBundle\Model\AzubiInterface;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use FR3D\LdapBundle\Model\LdapUserInterface;
 
 /**
  * Class User
@@ -12,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
  */
-class User extends BaseUser implements AzubiInterface
+class User extends BaseUser implements AzubiInterface, LdapUserInterface
 {
   /**
    * @ORM\Id
@@ -247,5 +248,25 @@ class User extends BaseUser implements AzubiInterface
   public function getWorklogRetrieverUsername()
   {
     return $this->getUsername();
+  }
+
+  /**
+   * Set Ldap Distinguished Name
+   *
+   * @param string $dn Distinguished Name
+   */
+  public function setDn($dn)
+  {
+    // TODO: Implement setDn() method.
+  }
+
+  /**
+   * Get Ldap Distinguished Name
+   *
+   * @return string Distinguished Name
+   */
+  public function getDn()
+  {
+    // TODO: Implement getDn() method.
   }
 }

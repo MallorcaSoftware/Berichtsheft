@@ -18,3 +18,7 @@ parameters:
     jira_credentials:  ~
 
     wkhtmltopdf_binary: /usr/local/wkhtmltopdf/wkhtmltopdf
+
+    ldap_host: ~
+    ldap_username: ~
+    ldap_password: ~

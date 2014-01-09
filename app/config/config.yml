@@ -76,6 +76,30 @@ fos_user:
     firewall_name: main
     user_class: Berichtsheft\UserBundle\Entity\User
 
+# LDAP configurations
+fr3d_ldap:
+    driver:
+        host:                %ldap_host%
+#       port:                389    # Optional
+        username:            %ldap_username%    # Optional
+        password:            %ldap_password%    # Optional
+#       bindRequiresDn:      true   # Optional
+        baseDn:              dc=eos-uptrade,dc=de   # Optional
+#       accountFilterFormat: (&(uid=%s)) # Optional. sprintf format %s will be the username
+#       optReferrals:        false  # Optional
+#       useSsl:              true   # Enable SSL negotiation. Optional
+#       useStartTls:         true   # Enable TLS negotiation. Optional
+    user:
+        baseDn: cn=webistrano-users,ou=groups-webistrano,dc=eos-uptrade,dc=de
+        filter: (&(ObjectClass=Person))
+        attributes:          # Specify ldap attributes mapping [ldap attribute, user object method]
+#           - { ldap_attr: uid,  user_method: setUsername } # Default
+#           - { ldap_attr: cn,   user_method: setName }     # Optional
+#           - { ldap_attr: ...,  user_method: ... }         # Optional
+#   service:
+#       user_manager: fos_user.user_manager          # Overrides default user manager
+#       ldap_manager: fr3d_ldap.ldap_manager.default # Overrides default ldap manager
+
 jira_api:
     url:         %jira_url%
     credentials: %jira_credentials%
