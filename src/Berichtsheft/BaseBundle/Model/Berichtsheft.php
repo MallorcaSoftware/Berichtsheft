@@ -147,6 +147,12 @@ class Berichtsheft
     return $this->number;
   }
 
+  /**
+   * Sorting BerichtsheftItems
+   * @param BerichtsheftItem $a
+   * @param BerichtsheftItem $b
+   * @return int
+   */
   public static function sortingItems(BerichtsheftItem $a, BerichtsheftItem $b)
   {
     if ($a->getDate() == $b->getDate()) {
