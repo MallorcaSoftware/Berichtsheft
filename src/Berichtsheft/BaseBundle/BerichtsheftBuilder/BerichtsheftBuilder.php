@@ -39,8 +39,10 @@ class BerichtsheftBuilder implements BerichtsheftBuilderInterface
    */
   public function generateBerichtsheft(AzubiInterface $azubi, $week, $year, $number = 1)
   {
-    $from = new \DateTime($year . '-W' . str_pad($week, 2, 0) . '-1');
-    $to = new \DateTime($year . '-W' . str_pad($week, 2, 0) . '-5');
+    $from = new \DateTime();
+    $from->setISODate($year, $week);
+    $to = new \DateTime();
+    $to->setISODate($year, $week, 7);
     $berichtsheft = new Berichtsheft($azubi, $from, $to, $number);
 
     $worklog_items = $this->getWorklogRetriever()->retrieve($azubi, $from, $to);
