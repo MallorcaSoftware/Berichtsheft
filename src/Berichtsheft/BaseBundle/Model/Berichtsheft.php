@@ -126,7 +126,9 @@ class Berichtsheft
    */
   public function getItems()
   {
-    return $this->items;
+    $items = $this->items;
+    usort($items, array(get_class($this), 'sortingItems'));
+    return $items;
   }
 
   /**
@@ -143,6 +145,14 @@ class Berichtsheft
   public function getNumber()
   {
     return $this->number;
+  }
+
+  public static function sortingItems(BerichtsheftItem $a, BerichtsheftItem $b)
+  {
+    if ($a->getDate() == $b->getDate()) {
+      return 0;
+    }
+    return ($a->getDate() < $b->getDate()) ? -1 : 1;
   }
 
 } 
