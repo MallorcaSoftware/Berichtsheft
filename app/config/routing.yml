@@ -1,3 +1,7 @@
+berichtsheft_generator:
+    resource: "@BerichtsheftGeneratorBundle/Resources/config/routing.yml"
+    prefix:   /
+
 berichtsheft_base:
     resource: "@BerichtsheftBaseBundle/Resources/config/routing.yml"
     prefix:   /

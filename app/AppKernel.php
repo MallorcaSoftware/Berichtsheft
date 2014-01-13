@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new PalliDotCom\BaseBundle\PalliDotComBaseBundle(),
             new JiraApiBundle\JiraApiBundle(),
             new MBence\OpenTBSBundle\OpenTBSBundle(),
+            new Berichtsheft\GeneratorBundle\BerichtsheftGeneratorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
