@@ -1,11 +1,15 @@
 parameters:
     berichtsheft_base.worklog_retriever.jira.class: Berichtsheft\BaseBundle\Worklog\Jira\JiraWorklogRetriever
+    berichtsheft_base.worklog_retriever.upgate.class: Berichtsheft\BaseBundle\Worklog\Upgate\UpgateWorklogRetriever
     berichtsheft_base.berichtsheft_builder.class: Berichtsheft\BaseBundle\BerichtsheftBuilder\BerichtsheftBuilder
 
 services:
     berichtsheft_base.worklog_retriever.jira:
         class: %berichtsheft_base.worklog_retriever.jira.class%
         arguments: [@jira_api.issue, @jira_api.project, @jira_api.search]
+    berichtsheft_base.worklog_retriever.upgate:
+        class: %berichtsheft_base.worklog_retriever.upgate.class%
+        arguments: ['%berichtsheft_base.worklog_retriever.upgate.username%', '%berichtsheft_base.worklog_retriever.upgate.password%']
     berichtsheft_base.berichtsheft_builder:
         class: %berichtsheft_base.berichtsheft_builder.class%
-        arguments: [@berichtsheft_base.worklog_retriever.jira]
+        arguments: [@berichtsheft_base.worklog_retriever.upgate]

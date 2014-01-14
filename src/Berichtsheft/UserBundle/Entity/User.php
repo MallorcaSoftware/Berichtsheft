@@ -22,6 +22,12 @@ class User extends BaseUser implements AzubiInterface
   protected $id;
 
   /**
+   * @ORM\Column(type="integer", nullable=true)
+   * @var int
+   */
+  protected $external_id;
+
+  /**
    * @ORM\Column(type="string", length=255)
    * @var string
    */
@@ -247,5 +253,14 @@ class User extends BaseUser implements AzubiInterface
   public function getWorklogRetrieverUsername()
   {
     return $this->getUsername();
+  }
+
+  /**
+   * External id is used for worklogretrievers
+   * @return string
+   */
+  public function getExternalId()
+  {
+    return $this->external_id;
   }
 }

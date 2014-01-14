@@ -14,15 +14,21 @@ use Symfony\Component\DependencyInjection\Loader;
  */
 class BerichtsheftBaseExtension extends Extension
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function load(array $configs, ContainerBuilder $container)
-    {
-        $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
+  /**
+   * {@inheritDoc}
+   */
+  public function load(array $configs, ContainerBuilder $container)
+  {
+    $configuration = new Configuration();
+    $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yml');
+    $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+    $loader->load('services.yml');
+
+    if(isset($config['upgate_api_username']) && isset($config['upgate_api_password']))
+    {
+      $container->setParameter('berichtsheft_base.worklog_retriever.upgate.username', $config['upgate_api_username']);
+      $container->setParameter('berichtsheft_base.worklog_retriever.upgate.password', $config['upgate_api_password']);
     }
+  }
 }

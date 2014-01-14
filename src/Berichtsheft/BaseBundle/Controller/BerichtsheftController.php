@@ -42,6 +42,20 @@ class BerichtsheftController extends Controller
   }
 
   /**
+   * @Template
+   * @param Request $request
+   * @return array
+   */
+  public function timetableAction(Request $request)
+  {
+    $azubi = $this->getCurrentAzubi();
+    $ausbildungFrom = $azubi->getAusbildungFrom();
+    $ausbildungTo = $azubi->getAusbildungTo();
+
+    return array();
+  }
+
+  /**
    * @param Request $request
    * @return Response
    */

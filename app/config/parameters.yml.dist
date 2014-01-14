@@ -17,4 +17,7 @@ parameters:
     jira_url:          ~
     jira_credentials:  ~
 
+    upgate_api_username:  ~
+    upgate_api_password:  ~
+
     wkhtmltopdf_binary: /usr/local/wkhtmltopdf/wkhtmltopdf
