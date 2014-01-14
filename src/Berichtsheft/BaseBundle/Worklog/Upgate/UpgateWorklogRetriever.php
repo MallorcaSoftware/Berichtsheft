@@ -42,11 +42,18 @@ class UpgateWorklogRetriever extends WorklogRetriever
     $report_calendar_week = $from->format('W');
     $report_year = $from->format('Y');
 
-    foreach($this->getData($trainee_id, $report_calendar_week, $report_year) as $jsonItem)
+    $data = $this->getData($trainee_id, $report_calendar_week, $report_year);
+    if($data)
     {
-      $worklogItem = new WorklogItem('upgate', html_entity_decode($jsonItem->headline), new \DateTime($jsonItem->datum));
-      $worklogItem->setComment(html_entity_decode($jsonItem->report));
-      $items[] = $worklogItem;
+      foreach($data as $jsonItem)
+      {
+        if(isset($jsonItem->headline) && isset($jsonItem->datum))
+        {
+          $worklogItem = new WorklogItem('upgate', html_entity_decode($jsonItem->headline), new \DateTime($jsonItem->datum));
+          $worklogItem->setComment(html_entity_decode($jsonItem->report));
+          $items[] = $worklogItem;
+        }
+      }
     }
 
     return $items;

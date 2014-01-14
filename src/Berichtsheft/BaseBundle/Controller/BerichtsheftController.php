@@ -36,8 +36,28 @@ class BerichtsheftController extends Controller
   public function showAction(Request $request)
   {
     $berichtsheft = $this->getBerichtsheft();
+
+    $week = ($berichtsheft->getFrom()->format('W') == 52) ? 1 : $berichtsheft->getFrom()->format('W') + 1;
+    $year = $berichtsheft->getFrom()->format('Y');
+
+    $form = $this->createFormBuilder(array())
+      ->setAction($this->generateUrl('berichtsheft_base_generate'))
+      ->add('number', 'hidden', array(
+        'data' => $berichtsheft->getNumber() + 1
+      ))
+      ->add('week', 'hidden', array(
+        'data' => $week
+      ))
+      ->add('year', 'hidden', array(
+        'data' => $year
+      ))
+      ->add('generate', 'submit', array(
+        'label' => 'nächste Woche'
+      ))
+      ->getForm();
     return array(
-      'berichtsheft' => $berichtsheft
+      'berichtsheft' => $berichtsheft,
+      'form' => $form->createView()
     );
   }
 
@@ -216,7 +236,7 @@ class BerichtsheftController extends Controller
   /**
    * @return \Symfony\Component\Form\Form
    */
-  private function getGenerationForm()
+  private function getGenerationForm($number = 1, $week = 0, $year = 0)
   {
     $weeks = array();
     for($i = 1; $i <= 52; $i++)
@@ -234,17 +254,19 @@ class BerichtsheftController extends Controller
       ->add('number', 'integer', array(
                       'required' => true,
                       'label' => 'Ausbildungsnachweis Nr.',
-                      'data' => '1'
+                      'data' => $number
                     ))
       ->add('week', 'choice', array(
                     'required' => true,
                     'choices' => $weeks,
-                    'label' => 'Kalenderwoche'
+                    'label' => 'Kalenderwoche',
+                    'data' => $week
                   ))
       ->add('year', 'choice', array(
                     'required' => true,
                     'choices' => $years,
-                    'label' => 'Jahr'
+                    'label' => 'Jahr',
+                    'data' => $year
                   ))
       ->add('generate', 'submit', array(
                         'label' => 'erstellen'
