@@ -10,11 +10,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Berichtsheft\BaseBundle\BerichtsheftBuilder\BerichtsheftBuilderInterface;
+use Berichtsheft\BaseBundle\Render\BerichtsheftRendererInterface;
 
 class BerichtsheftController extends Controller
 {
-
-  const TBS_TEMPLATE_PATH = 'data/berichtsheft_template.odt';
 
   /**
    * @Template
@@ -106,37 +105,7 @@ class BerichtsheftController extends Controller
     $berichtsheft = $this->getBerichtsheft();
     $azubi = $this->getCurrentAzubi();
 
-    $openTBS = $this->getOpenTBS();
-    $this->getOpenTBSTemplatePath();
-    $openTBS->LoadTemplate($this->getOpenTBSTemplatePath());
-
-    $items = array();
-    foreach($berichtsheft->getItems() as $item)
-    {
-      $items[] = array(
-        'date' => $item->getDate()->format('d.m.Y'),
-        'description' => utf8_decode($item->getContent()),
-        'time_spent' => ($item->getTimeSpentSeconds() / 60) . ' Minuten'
-      );
-    }
-
-    $openTBS->MergeBlock('blk2', $items);
-    $openTBS->MergeField('azubi', array(
-      'name' => $azubi->getSurname(),
-      'firstname' => $azubi->getFirstName(),
-      'birthday' => $azubi->getBirthday()->format('d.m.Y'),
-      'birthplace' => $azubi->getBirthPlace(),
-      'residence' => $azubi->getResidence(),
-      'street' => $azubi->getStreet(),
-      'ausbildungsberuf' => $azubi->getAusbildungsberuf(),
-      'ausbildungszeitraum' => 'vom ' . $azubi->getAusbildungFrom()->format('d.m.Y') . ' bis ' . $azubi->getAusbildungTo()->format('d.m.Y'),
-      'ausbildungresidence' => $azubi->getAusbildungResidence()
-    ));
-    $openTBS->MergeField('berichtsheft', array(
-      'number' => $berichtsheft->getNumber(),
-      'from' => $berichtsheft->getFrom()->format('d.m.Y'),
-      'to' => $berichtsheft->getTo()->format('d.m.Y')
-    ));
+    $openTBS = $this->getBerichtsheftRenderer()->renderBerichtsheft($berichtsheft, $azubi);
     $openTBS->Show(OPENTBS_DOWNLOAD, $berichtsheft->getFileName() . '.odt');
   }
 
@@ -201,20 +170,11 @@ class BerichtsheftController extends Controller
   }
 
   /**
-   * @return OpenTBS
+   * @return BerichtsheftRendererInterface
    */
-  protected function getOpenTBS()
+  private function getBerichtsheftRenderer()
   {
-    return $this->get('opentbs');
-  }
-
-  /**
-   * returns path to template file
-   * @return string
-   */
-  protected function getOpenTBSTemplatePath()
-  {
-    return $this->get('kernel')->getRootDir() . '/' . self::TBS_TEMPLATE_PATH;
+    return $this->get('berichtsheft_base.berichtsheft_renderer.open_tbs');
   }
 
   /**

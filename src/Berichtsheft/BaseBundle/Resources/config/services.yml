@@ -2,6 +2,7 @@ parameters:
     berichtsheft_base.worklog_retriever.jira.class: Berichtsheft\BaseBundle\Worklog\Jira\JiraWorklogRetriever
     berichtsheft_base.worklog_retriever.upgate.class: Berichtsheft\BaseBundle\Worklog\Upgate\UpgateWorklogRetriever
     berichtsheft_base.berichtsheft_builder.class: Berichtsheft\BaseBundle\BerichtsheftBuilder\BerichtsheftBuilder
+    berichtsheft_base.berichtsheft_renderer.open_tbs.class: Berichtsheft\BaseBundle\Render\OpenTBSBerichtsheftRenderer
 
 services:
     berichtsheft_base.worklog_retriever.jira:
@@ -13,3 +14,6 @@ services:
     berichtsheft_base.berichtsheft_builder:
         class: %berichtsheft_base.berichtsheft_builder.class%
         arguments: [@berichtsheft_base.worklog_retriever.upgate]
+    berichtsheft_base.berichtsheft_renderer.open_tbs:
+        class: %berichtsheft_base.berichtsheft_renderer.open_tbs.class%
+        arguments: [@kernel, @opentbs]
