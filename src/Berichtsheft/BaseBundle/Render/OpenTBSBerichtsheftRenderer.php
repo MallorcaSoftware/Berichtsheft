@@ -46,10 +46,15 @@ class OpenTBSBerichtsheftRenderer implements BerichtsheftRendererInterface
     $items = array();
     foreach($berichtsheft->getItems() as $item)
     {
+      $time_spent = ($item->getTimeSpentSeconds() / 60);
+      if($time_spent == 0)
+      {
+        $time_spent = 120;
+      }
       $items[] = array(
-        'date' => $item->getDate()->format('d.m.Y'),
+        'date' => $item->getDate()->format('D') . ', '. $item->getDate()->format('d.m.Y'),
         'description' => utf8_decode($item->getContent()),
-        'time_spent' => ($item->getTimeSpentSeconds() / 60) . ' Minuten'
+        'time_spent' => $time_spent . ' Minuten'
       );
     }
 
