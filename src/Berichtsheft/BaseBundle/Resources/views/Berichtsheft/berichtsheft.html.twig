@@ -13,7 +13,7 @@
     <tbody>
     {% for item in berichtsheft.items %}
         <tr>
-            <td>{{ item.date | date('d.m.Y') }}</td>
+            <td>{{ item.date | date('D') }}, {{ item.date | date('d.m.Y') }}</td>
             <td>{{ item.content }}</td>
             <td>{{ item.timespentseconds / 60 }} Minuten</td>
         </tr>

@@ -15,6 +15,12 @@ interface AzubiInterface
   function getWorklogRetrieverUsername();
 
   /**
+   * External id is used for worklogretrievers
+   * @return string
+   */
+  function getExternalId();
+
+  /**
    * @return string
    */
   function getSurname();

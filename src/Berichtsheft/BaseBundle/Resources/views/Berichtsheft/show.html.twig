@@ -4,8 +4,11 @@
 
     <div class="row top-margin-row">
         <div class="col-lg-12">
+
+        </div>
+        <div class="col-lg-12">
             <div class="actions">
-                <div class="btn-group">
+                <div class="btn-group btn-block">
                     <a href="{{ path('berichtsheft_base_dashboard') }}" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> zurück</a>
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-export"></span> exportieren <span class="caret"></span>
@@ -14,6 +17,13 @@
                         <li><a href="{{ path('berichtsheft_base_tbs') }}"><span class="glyphicon glyphicon-edit"></span> Word / OpenOffice</a></li>
                         <li><a href="{{ path('berichtsheft_base_pdf') }}"><span class="glyphicon glyphicon-file"></span> PDF</a></li>
                     </ul>
+
+                    <div class="next_week pull-right">
+                        {{ form_start(form) }}
+                        {{ form_errors(form) }}
+                        {{ form_widget(form.generate, {'attr': {'class': 'btn btn-default'}}) }}
+                        {{ form_end(form) }}
+                    </div>
                 </div>
             </div>
             {{ include('BerichtsheftBaseBundle:Berichtsheft:berichtsheft.html.twig', { 'berichtsheft': berichtsheft }) }}

@@ -10,11 +10,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Berichtsheft\BaseBundle\BerichtsheftBuilder\BerichtsheftBuilderInterface;
+use Berichtsheft\BaseBundle\Render\BerichtsheftRendererInterface;
 
 class BerichtsheftController extends Controller
 {
-
-  const TBS_TEMPLATE_PATH = 'data/berichtsheft_template.odt';
 
   /**
    * @Template
@@ -36,9 +35,43 @@ class BerichtsheftController extends Controller
   public function showAction(Request $request)
   {
     $berichtsheft = $this->getBerichtsheft();
+
+    $week = ($berichtsheft->getFrom()->format('W') == 52) ? 1 : $berichtsheft->getFrom()->format('W') + 1;
+    $year = $berichtsheft->getFrom()->format('Y');
+
+    $form = $this->createFormBuilder(array())
+      ->setAction($this->generateUrl('berichtsheft_base_generate'))
+      ->add('number', 'hidden', array(
+        'data' => $berichtsheft->getNumber() + 1
+      ))
+      ->add('week', 'hidden', array(
+        'data' => $week
+      ))
+      ->add('year', 'hidden', array(
+        'data' => $year
+      ))
+      ->add('generate', 'submit', array(
+        'label' => 'nächste Woche'
+      ))
+      ->getForm();
     return array(
-      'berichtsheft' => $berichtsheft
+      'berichtsheft' => $berichtsheft,
+      'form' => $form->createView()
     );
+  }
+
+  /**
+   * @Template
+   * @param Request $request
+   * @return array
+   */
+  public function timetableAction(Request $request)
+  {
+    $azubi = $this->getCurrentAzubi();
+    $ausbildungFrom = $azubi->getAusbildungFrom();
+    $ausbildungTo = $azubi->getAusbildungTo();
+
+    return array();
   }
 
   /**
@@ -72,37 +105,7 @@ class BerichtsheftController extends Controller
     $berichtsheft = $this->getBerichtsheft();
     $azubi = $this->getCurrentAzubi();
 
-    $openTBS = $this->getOpenTBS();
-    $this->getOpenTBSTemplatePath();
-    $openTBS->LoadTemplate($this->getOpenTBSTemplatePath());
-
-    $items = array();
-    foreach($berichtsheft->getItems() as $item)
-    {
-      $items[] = array(
-        'date' => $item->getDate()->format('d.m.Y'),
-        'description' => utf8_decode($item->getContent()),
-        'time_spent' => ($item->getTimeSpentSeconds() / 60) . ' Minuten'
-      );
-    }
-
-    $openTBS->MergeBlock('blk2', $items);
-    $openTBS->MergeField('azubi', array(
-      'name' => $azubi->getSurname(),
-      'firstname' => $azubi->getFirstName(),
-      'birthday' => $azubi->getBirthday()->format('d.m.Y'),
-      'birthplace' => $azubi->getBirthPlace(),
-      'residence' => $azubi->getResidence(),
-      'street' => $azubi->getStreet(),
-      'ausbildungsberuf' => $azubi->getAusbildungsberuf(),
-      'ausbildungszeitraum' => 'vom ' . $azubi->getAusbildungFrom()->format('d.m.Y') . ' bis ' . $azubi->getAusbildungTo()->format('d.m.Y'),
-      'ausbildungresidence' => $azubi->getAusbildungResidence()
-    ));
-    $openTBS->MergeField('berichtsheft', array(
-      'number' => $berichtsheft->getNumber(),
-      'from' => $berichtsheft->getFrom()->format('d.m.Y'),
-      'to' => $berichtsheft->getTo()->format('d.m.Y')
-    ));
+    $openTBS = $this->getBerichtsheftRenderer()->renderBerichtsheft($berichtsheft, $azubi);
     $openTBS->Show(OPENTBS_DOWNLOAD, $berichtsheft->getFileName() . '.odt');
   }
 
@@ -167,20 +170,11 @@ class BerichtsheftController extends Controller
   }
 
   /**
-   * @return OpenTBS
+   * @return BerichtsheftRendererInterface
    */
-  protected function getOpenTBS()
+  private function getBerichtsheftRenderer()
   {
-    return $this->get('opentbs');
-  }
-
-  /**
-   * returns path to template file
-   * @return string
-   */
-  protected function getOpenTBSTemplatePath()
-  {
-    return $this->get('kernel')->getRootDir() . '/' . self::TBS_TEMPLATE_PATH;
+    return $this->get('berichtsheft_base.berichtsheft_renderer.open_tbs');
   }
 
   /**
@@ -202,7 +196,7 @@ class BerichtsheftController extends Controller
   /**
    * @return \Symfony\Component\Form\Form
    */
-  private function getGenerationForm()
+  private function getGenerationForm($number = 1, $week = 0, $year = 0)
   {
     $weeks = array();
     for($i = 1; $i <= 52; $i++)
@@ -220,17 +214,19 @@ class BerichtsheftController extends Controller
       ->add('number', 'integer', array(
                       'required' => true,
                       'label' => 'Ausbildungsnachweis Nr.',
-                      'data' => '1'
+                      'data' => $number
                     ))
       ->add('week', 'choice', array(
                     'required' => true,
                     'choices' => $weeks,
-                    'label' => 'Kalenderwoche'
+                    'label' => 'Kalenderwoche',
+                    'data' => $week
                   ))
       ->add('year', 'choice', array(
                     'required' => true,
                     'choices' => $years,
-                    'label' => 'Jahr'
+                    'label' => 'Jahr',
+                    'data' => $year
                   ))
       ->add('generate', 'submit', array(
                         'label' => 'erstellen'

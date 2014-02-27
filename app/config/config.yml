@@ -79,3 +79,8 @@ fos_user:
 jira_api:
     url:         %jira_url%
     credentials: %jira_credentials%
+
+# Config
+berichtsheft_base:
+  upgate_api_username: %upgate_api_username%
+  upgate_api_password: %upgate_api_password%

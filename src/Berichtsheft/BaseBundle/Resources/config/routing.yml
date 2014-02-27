@@ -2,6 +2,10 @@ berichtsheft_base_dashboard:
     pattern:  /
     defaults: { _controller: BerichtsheftBaseBundle:Berichtsheft:dashboard }
 
+berichtsheft_base_timetable:
+    pattern:  /timetable
+    defaults: { _controller: BerichtsheftBaseBundle:Berichtsheft:timetable }
+
 berichtsheft_base_show:
     pattern:  /show
     defaults: { _controller: BerichtsheftBaseBundle:Berichtsheft:show }

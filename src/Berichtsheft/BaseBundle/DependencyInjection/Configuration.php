@@ -12,18 +12,20 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function getConfigTreeBuilder()
-    {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('berichtsheft_base');
+  /**
+   * {@inheritDoc}
+   */
+  public function getConfigTreeBuilder()
+  {
+    $treeBuilder = new TreeBuilder();
+    $rootNode = $treeBuilder->root('berichtsheft_base');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
-
-        return $treeBuilder;
-    }
+    $rootNode
+      ->children()
+        ->scalarNode('upgate_api_username')->isRequired()->end()
+        ->scalarNode('upgate_api_password')->isRequired()->end()
+      ->end()
+    ;
+    return $treeBuilder;
+  }
 }
