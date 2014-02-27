@@ -1,3 +1,0 @@
-berichtsheft_generator_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: BerichtsheftGeneratorBundle:Default:index }

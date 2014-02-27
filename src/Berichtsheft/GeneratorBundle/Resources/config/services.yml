@@ -1,7 +1,0 @@
-parameters:
-#    berichtsheft_generator.example.class: Berichtsheft\GeneratorBundle\Example
-
-services:
-#    berichtsheft_generator.example:
-#        class: %berichtsheft_generator.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
