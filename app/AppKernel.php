@@ -20,7 +20,6 @@ class AppKernel extends Kernel
             new Berichtsheft\BaseBundle\BerichtsheftBaseBundle(),
             new Berichtsheft\UserBundle\BerichtsheftUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new PalliDotCom\BaseBundle\PalliDotComBaseBundle(),
             new JiraApiBundle\JiraApiBundle(),
             new MBence\OpenTBSBundle\OpenTBSBundle(),
         );
