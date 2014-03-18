@@ -6,30 +6,25 @@
     "autoload": {
         "psr-0": { "": "src/" }
     },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "http://github.com/PalliDotCom/BaseBundle"
-        }
-    ],
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.3.*",
-        "doctrine/orm": ">=2.2.3,<2.4-dev",
-        "doctrine/doctrine-bundle": "1.2.*",
-        "twig/extensions": "1.0.*",
-        "symfony/assetic-bundle": "2.3.*",
-        "symfony/swiftmailer-bundle": "2.3.*",
-        "symfony/monolog-bundle": "2.3.*",
-        "sensio/distribution-bundle": "2.3.*",
-        "sensio/framework-extra-bundle": "2.3.*",
-        "sensio/generator-bundle": "2.3.*",
+        "symfony/symfony": "~2.4",
+        "doctrine/orm": "~2.2,>=2.2.3",
+        "doctrine/doctrine-bundle": "~1.2",
+        "twig/extensions": "~1.0",
+        "symfony/assetic-bundle": "~2.3",
+        "symfony/swiftmailer-bundle": "~2.3",
+        "symfony/monolog-bundle": "~2.4",
+        "sensio/distribution-bundle": "~2.3",
+        "sensio/framework-extra-bundle": "~3.0",
+        "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
-        "pallidotcom/base-bundle": "dev-master",
         "knplabs/knp-snappy-bundle": "dev-master",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "medicorenl/jira-api-bundle": "dev-master",
-        "mbence/opentbs-bundle": "dev-master"
+        "mbence/opentbs-bundle": "dev-master",
+        "raulfraile/ladybug-bundle": "~1.0",
+        "lexik/maintenance-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
@@ -50,7 +45,6 @@
     "config": {
         "bin-dir": "bin"
     },
-    "minimum-stability": "stable",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
@@ -58,7 +52,7 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-            "dev-master": "2.3-dev"
+            "dev-master": "2.4-dev"
         }
     }
 }

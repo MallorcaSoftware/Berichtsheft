@@ -84,3 +84,20 @@ jira_api:
 berichtsheft_base:
   upgate_api_username: %upgate_api_username%
   upgate_api_password: %upgate_api_password%
+
+lexik_maintenance:
+    authorized:
+        query: { dev: 1 }
+    driver:
+        ttl: 3600
+
+         # File driver
+        class: '\Lexik\Bundle\MaintenanceBundle\Drivers\FileDriver'
+        options: {file_path: %kernel.root_dir%/cache/lock}
+
+         # MemCache driver
+        class: Lexik\Bundle\MaintenanceBundle\Drivers\MemCacheDriver
+        options: {key_name: 'maintenance', host: 127.0.0.1, port: 11211}
+
+        # Database driver:
+        class: 'Lexik\Bundle\MaintenanceBundle\Drivers\DatabaseDriver'
