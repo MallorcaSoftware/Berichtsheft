@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new JiraApiBundle\JiraApiBundle(),
             new MBence\OpenTBSBundle\OpenTBSBundle(),
+            new Lexik\Bundle\MaintenanceBundle\LexikMaintenanceBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
